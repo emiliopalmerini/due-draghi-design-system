@@ -1,0 +1,190 @@
+/* Due Draghi Design System - Design Tokens */
+/* Base design tokens for consistent theming across applications */
+
+:root {
+  /* ===== Color Palette ===== */
+  /* Primary Brand Colors */
+  --butterscotch: #E19E43;           /* Golden orange - primary warm accent */
+  --celestial-blue: #2493D0;         /* Main blue - primary brand color */
+  --bittersweet-shimmer: #CF4C56;    /* Red accent - secondary brand color */
+  --earth-yellow: #EFBB77;           /* Yellow highlights - tertiary accent */
+  --reseda-green: #766F55;           /* Olive green - subtle details */
+
+  /* Semantic Color Mappings */
+  --primary-color: var(--celestial-blue);
+  --secondary-color: var(--bittersweet-shimmer);
+  --accent-color: var(--earth-yellow);
+  --success-color: var(--reseda-green);
+  --warning-color: var(--butterscotch);
+  --error-color: var(--bittersweet-shimmer);
+
+  /* Gradients */
+  --primary-gradient: linear-gradient(135deg, var(--celestial-blue) 45%, var(--bittersweet-shimmer) 55%);
+  --hero-gradient: linear-gradient(135deg, var(--celestial-blue), var(--bittersweet-shimmer));
+
+  /* Surface Colors */
+  --background-color: #FFFFFF;
+  --surface-color: #FFFFFF;
+  --overlay-color: rgba(255, 255, 255, 0.05);
+
+  /* Text Colors */
+  --text-primary: #2C2C2C;
+  --text-secondary: var(--reseda-green);
+  --text-muted: #666666;
+  --text-inverse: #FFFFFF;
+
+  /* Border Colors */
+  --border-color: #E0E0E0;
+  --border-light: #F0F0F0;
+  --border-dark: #D0D0D0;
+
+  /* Interaction Colors */
+  --hover-color: var(--earth-yellow);
+  --focus-color: var(--celestial-blue);
+
+  /* Shadow Colors */
+  --shadow-color: rgba(36, 147, 208, 0.1);
+  --shadow-color-dark: rgba(36, 147, 208, 0.25);
+
+  /* Difficulty Colors (for encounter calculator) */
+  --difficulty-trivial: var(--reseda-green);
+  --difficulty-easy: var(--celestial-blue);
+  --difficulty-medium: var(--earth-yellow);
+  --difficulty-hard: var(--butterscotch);
+  --difficulty-deadly: var(--bittersweet-shimmer);
+
+  /* ===== Typography ===== */
+  /* Font Families */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px - standardized */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  --font-size-5xl: 3rem;        /* 48px */
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 1.7;
+
+  /* ===== Spacing Scale ===== */
+  /* Based on 0.25rem (4px) increments */
+  --space-0: 0;
+  --space-1: 0.25rem;     /* 4px */
+  --space-2: 0.5rem;      /* 8px */
+  --space-3: 0.75rem;     /* 12px */
+  --space-4: 1rem;        /* 16px */
+  --space-5: 1.25rem;     /* 20px */
+  --space-6: 1.5rem;      /* 24px */
+  --space-7: 1.75rem;     /* 28px */
+  --space-8: 2rem;        /* 32px */
+  --space-10: 2.5rem;     /* 40px */
+  --space-12: 3rem;       /* 48px */
+  --space-16: 4rem;       /* 64px */
+  --space-20: 5rem;       /* 80px */
+  --space-24: 6rem;       /* 96px */
+  --space-32: 8rem;       /* 128px */
+
+  /* ===== Border Radius ===== */
+  --radius-xs: 0.25rem;   /* 4px */
+  --radius-sm: 0.375rem;  /* 6px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-2xl: 1.5rem;   /* 24px */
+  --radius-full: 9999px;  /* Fully rounded */
+
+  /* ===== Shadows ===== */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px 0 rgba(36, 147, 208, 0.08);
+  --shadow-md: 0 4px 15px rgba(36, 147, 208, 0.1);
+  --shadow-lg: 0 8px 25px rgba(36, 147, 208, 0.15);
+  --shadow-xl: 0 8px 32px rgba(36, 147, 208, 0.25);
+  --shadow-2xl: 0 12px 48px rgba(36, 147, 208, 0.3);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+  /* ===== Transitions ===== */
+  --transition-speed-fast: 0.15s;
+  --transition-speed-base: 0.3s;
+  --transition-speed-slow: 0.5s;
+  --transition-timing: ease;
+  --transition-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ===== Breakpoints ===== */
+  /* Note: Use in media queries, not as CSS variables */
+  /* --breakpoint-sm: 640px; */
+  /* --breakpoint-md: 768px; */
+  /* --breakpoint-lg: 1024px; */
+  /* --breakpoint-xl: 1200px; */
+  /* --breakpoint-2xl: 1400px; */
+
+  /* ===== Z-Index Scale ===== */
+  --z-index-dropdown: 100;
+  --z-index-sticky: 200;
+  --z-index-fixed: 300;
+  --z-index-modal-backdrop: 400;
+  --z-index-modal: 500;
+  --z-index-popover: 600;
+  --z-index-tooltip: 700;
+
+  /* ===== Layout ===== */
+  --container-max-width: 1400px;
+  --container-padding: 2rem;
+  --container-padding-mobile: 1rem;
+
+  /* ===== Form Elements ===== */
+  --input-height: 2.75rem;        /* 44px */
+  --input-padding-x: 0.75rem;
+  --input-padding-y: 0.75rem;
+  --input-border-width: 1px;
+  --input-focus-ring-width: 3px;
+  --input-focus-ring-opacity: 0.1;
+
+  /* ===== Animation Durations ===== */
+  --animation-duration-fast: 200ms;
+  --animation-duration-base: 300ms;
+  --animation-duration-slow: 500ms;
+  --animation-duration-slower: 800ms;
+}
+
+/* ===== Dark Mode Support ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1A1A1A;
+    --surface-color: rgba(18, 18, 18, 0.95);
+    --text-primary: #E0E0E0;
+    --text-secondary: #A0A0A0;
+    --border-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ===== Reduced Motion Support ===== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-speed-fast: 0s;
+    --transition-speed-base: 0s;
+    --transition-speed-slow: 0s;
+    --animation-duration-fast: 0s;
+    --animation-duration-base: 0s;
+    --animation-duration-slow: 0s;
+    --animation-duration-slower: 0s;
+  }
+}

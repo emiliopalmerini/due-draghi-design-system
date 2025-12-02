@@ -1,0 +1,61 @@
+package designsystem
+
+// FormGroup renders a form group with label and input
+templ FormGroup(label string, name string, inputType string, value string, attrs templ.Attributes) {
+	<div class="form-group">
+		<label for={ name } class="form-label">{ label }</label>
+		<input
+			type={ inputType }
+			id={ name }
+			name={ name }
+			value={ value }
+			class="form-input"
+			{ attrs... }
+		/>
+	</div>
+}
+
+// FormSelect renders a select dropdown
+templ FormSelect(label string, name string, options map[string]string, selectedValue string) {
+	<div class="form-group">
+		<label for={ name } class="form-label">{ label }</label>
+		<select id={ name } name={ name } class="form-select">
+			for value, text := range options {
+				<option value={ value } selected?={ value == selectedValue }>
+					{ text }
+				</option>
+			}
+		</select>
+	</div>
+}
+
+// RadioGroup renders a radio button group
+templ RadioGroup(name string, options map[string]string, selectedValue string) {
+	<div class="radio-group">
+		for value, text := range options {
+			<label class="radio-option">
+				<input
+					type="radio"
+					name={ name }
+					value={ value }
+					checked?={ value == selectedValue }
+				/>
+				<span>{ text }</span>
+			</label>
+		}
+	</div>
+}
+
+// FormHelp renders helper text for a form field
+templ FormHelp(text string) {
+	<div class="form-help">
+		{ text }
+	</div>
+}
+
+// FormError renders an error message
+templ FormError(text string) {
+	<div class="form-error">
+		{ text }
+	</div>
+}

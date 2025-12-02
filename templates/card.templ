@@ -1,0 +1,31 @@
+package designsystem
+
+// Card renders a basic card component
+templ Card(children ...templ.Component) {
+	<div class="card">
+		{ children... }
+	</div>
+}
+
+// FormPanel renders a form panel card with a title
+templ FormPanel(title string, children ...templ.Component) {
+	<div class="form-panel">
+		<h2>{ title }</h2>
+		{ children... }
+	</div>
+}
+
+// ResultCard renders a result card with success state
+templ ResultCard(children ...templ.Component) {
+	<div class="result-card success">
+		{ children... }
+	</div>
+}
+
+// InfoTile renders a tile with title and description
+templ InfoTile(title string, description string) {
+	<div class="tile">
+		<h3>{ title }</h3>
+		<p>{ description }</p>
+	</div>
+}

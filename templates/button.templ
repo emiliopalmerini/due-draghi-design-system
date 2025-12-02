@@ -1,0 +1,31 @@
+package designsystem
+
+// Button renders a button with different variants
+templ Button(text string, variant string, attrs templ.Attributes) {
+	<button class={ "btn", getButtonClass(variant) } { attrs... }>
+		<span class="btn-text">{ text }</span>
+		<span class="btn-loading">Caricamento...</span>
+	</button>
+}
+
+func getButtonClass(variant string) string {
+	switch variant {
+	case "primary":
+		return "btn-primary"
+	case "secondary":
+		return "btn-secondary"
+	case "small":
+		return "btn-small"
+	case "large":
+		return "btn-large"
+	default:
+		return "btn-primary"
+	}
+}
+
+// ButtonLink renders a link styled as a button
+templ ButtonLink(text string, href string, variant string) {
+	<a href={ templ.URL(href) } class={ "btn", getButtonClass(variant) }>
+		{ text }
+	</a>
+}

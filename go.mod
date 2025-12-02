@@ -1,0 +1,5 @@
+module github.com/emiliopalmerini/due-draghi-design-system
+
+go 1.25.2
+
+require github.com/a-h/templ v0.3.960 // indirect
