@@ -59,3 +59,10 @@ templ FormError(text string) {
 		{ text }
 	</div>
 }
+
+// FlashMessage renders a temporary message
+templ FlashMessage(message string, messageType string) {
+	<div class={ "flash-message", "flash-" + messageType }>
+		{ message }
+	</div>
+}

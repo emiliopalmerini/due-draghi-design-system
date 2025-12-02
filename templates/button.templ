@@ -8,24 +8,26 @@ templ Button(text string, variant string, attrs templ.Attributes) {
 	</button>
 }
 
+// ButtonLink renders a link styled as a button
+templ ButtonLink(text string, href string, variant string) {
+	<a href={ templ.URL(href) } class={ "btn", getButtonClass(variant) }>
+		{ text }
+	</a>
+}
+
 func getButtonClass(variant string) string {
 	switch variant {
 	case "primary":
 		return "btn-primary"
 	case "secondary":
 		return "btn-secondary"
-	case "small":
-		return "btn-small"
-	case "large":
+	case "ghost":
+		return "btn-ghost"
+	case "small", "sm":
+		return "btn-sm"
+	case "large", "lg":
 		return "btn-large"
 	default:
 		return "btn-primary"
 	}
-}
-
-// ButtonLink renders a link styled as a button
-templ ButtonLink(text string, href string, variant string) {
-	<a href={ templ.URL(href) } class={ "btn", getButtonClass(variant) }>
-		{ text }
-	</a>
 }

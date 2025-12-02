@@ -7,6 +7,16 @@ templ Card(children ...templ.Component) {
 	</div>
 }
 
+// CardHeader renders a card header with title and optional description
+templ CardHeader(title string, description string) {
+	<div class="card-header">
+		<h2>{ title }</h2>
+		if description != "" {
+			<p>{ description }</p>
+		}
+	</div>
+}
+
 // FormPanel renders a form panel card with a title
 templ FormPanel(title string, children ...templ.Component) {
 	<div class="form-panel">
@@ -28,4 +38,24 @@ templ InfoTile(title string, description string) {
 		<h3>{ title }</h3>
 		<p>{ description }</p>
 	</div>
+}
+
+// CollectionCard renders a collection item card
+templ CollectionCard(title string, subtitle string, href string, badge string) {
+	<a href={ templ.URL(href) } class="collection-card">
+		<div class="collection-card-content">
+			<div class="collection-card-header">
+				<div>
+					if subtitle != "" {
+						<div class="collection-card-subtitle">{ subtitle }</div>
+					}
+					<h3 class="collection-card-title">{ title }</h3>
+				</div>
+				if badge != "" {
+					<span class="collection-badge">{ badge }</span>
+				}
+			</div>
+			<div class="collection-card-footer">→</div>
+		</div>
+	</a>
 }

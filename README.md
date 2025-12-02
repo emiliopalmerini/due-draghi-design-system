@@ -1,124 +1,154 @@
 # Due Draghi Design System
 
-A unified design system for Due Draghi applications, providing consistent styling, components, and utilities across all projects.
+A clean, minimal design system built on Notion-like aesthetics. Designed for simplicity and consistency across applications.
 
-## Structure
+## Features
 
-```
-due-draghi-design-system/
-├── css/
-│   ├── tokens.css      # Design tokens (colors, spacing, typography)
-│   ├── main.css        # Base styles + all components
-│   └── utilities.css   # Utility classes
-├── templates/          # Reusable Templ components
-│   ├── button.templ
-│   ├── card.templ
-│   └── form.templ
-├── js/                 # JavaScript utilities
-│   ├── htmx-setup.js
-│   └── form-utils.js
-└── README.md
-```
+- **Notion-inspired palette**: Red/Crimson primary colors with Cyan accents
+- **Minimalist design**: Clean lines, subtle shadows, and spacious layouts
+- **Templ components**: Reusable Go Templ components for rapid UI development
+- **Responsive**: Mobile-first approach with responsive utilities
+- **Accessibility**: WCAG 2.1 compliant with proper focus states and semantic HTML
+- **Dark mode**: Full dark mode support via `prefers-color-scheme`
+- **Reduced motion**: Respects user motion preferences
 
-## Installation
+## Quick Start
 
-### For Go/Templ Projects
+### Include the CSS
 
-Add as a local module:
-
-```bash
-# In your go.mod
-replace github.com/emiliopalmerini/due-draghi-design-system => ../due-draghi-design-system
-
-# Then run
-go mod tidy
+```html
+<link rel="stylesheet" href="/static/css/tokens.css"/>
+<link rel="stylesheet" href="/static/css/main.css"/>
+<link rel="stylesheet" href="/static/css/utilities.css"/>
 ```
 
-Import in your Go code:
+### Use Templ Components
 
 ```go
-import designsystem "github.com/emiliopalmerini/due-draghi-design-system/templates"
+import "due-draghi-design-system/designsystem"
+
+// In your template:
+@designsystem.Button("Click me", "primary", templ.Attributes{})
+@designsystem.Card(
+  designsystem.CardHeader("Title", "Description"),
+)
 ```
 
-### CSS Integration
+## Color Palette
 
-```html
-<link rel="stylesheet" href="/path/to/tokens.css"/>
-<link rel="stylesheet" href="/path/to/main.css"/>
-<link rel="stylesheet" href="/path/to/utilities.css"/>
-```
-
-### JavaScript Integration
-
-```html
-<script src="/path/to/htmx-setup.js"></script>
-<script src="/path/to/form-utils.js"></script>
-```
-
-## Design Tokens
-
-### Colors
-- `--butterscotch: #E19E43` - Golden orange primary
-- `--celestial-blue: #2493D0` - Main blue
-- `--bittersweet-shimmer: #CF4C56` - Red accent
-- `--earth-yellow: #EFBB77` - Yellow highlights
-- `--reseda-green: #766F55` - Olive green
+### Primary Colors
+- **Primary**: `#EF4444` (Red)
+- **Primary Dark**: `#DC2626` (Dark Red)
+- **Primary Light**: `#FEE2E2` (Light Red)
+- **Secondary**: `#06B6D4` (Cyan)
 
 ### Semantic Colors
-- `--primary-color`, `--secondary-color`, `--accent-color`
-- `--success-color`, `--error-color`, `--warning-color`
+- **Success**: `#10B981` (Green)
+- **Warning**: `#F59E0B` (Amber)
+- **Error**: `#EF4444` (Red)
 
-### Spacing Scale
-- `--space-1` (4px) through `--space-32` (128px)
-
-### Typography
-- `--font-size-xs` (12px) through `--font-size-4xl` (36px)
-- `--font-weight-light` (300) through `--font-weight-extrabold` (800)
+### Grayscale
+- Ranges from `--gray-50` (lightest) to `--gray-900` (darkest)
+- **Text Primary**: `#37352f` (Notion-inspired dark)
+- **Text Light**: `#787774` (Notion-inspired gray)
 
 ## Components
 
 ### Buttons
-- `.btn`, `.btn-primary`, `.btn-secondary`
-- `.btn-small`, `.btn-large`
+
+```go
+@designsystem.Button("Primary", "primary", templ.Attributes{})
+@designsystem.Button("Secondary", "secondary", templ.Attributes{})
+@designsystem.Button("Ghost", "ghost", templ.Attributes{})
+@designsystem.Button("Small", "sm", templ.Attributes{})
+@designsystem.ButtonLink("Link Button", "/path", "primary")
+```
 
 ### Cards
-- `.card`, `.form-panel`, `.result-card`
-- `.info-tiles`, `.elegant-description`, `.site-banner`
+
+```go
+@designsystem.Card(
+  designsystem.CardHeader("Card Title", "Optional description"),
+)
+
+@designsystem.FormPanel("Form Title",
+  // form content
+)
+
+@designsystem.ResultCard(
+  // result content
+)
+
+@designsystem.InfoTile("Tile Title", "Tile description")
+
+@designsystem.CollectionCard("Item", "Subtitle", "/path", "Badge")
+```
 
 ### Forms
-- `.form-group`, `.form-label`, `.form-input`, `.form-select`
-- `.radio-group`, `.radio-option`
-- `.character-level-input`, `.form-help`, `.form-error`
 
-### Calculator
-- `.calculator-layout`, `.calculator-results`
-- `.difficulty-trivial`, `.difficulty-easy`, `.difficulty-medium`, `.difficulty-hard`, `.difficulty-deadly`
+```go
+@designsystem.FormGroup("Label", "fieldname", "text", "", templ.Attributes{})
+@designsystem.FormSelect("Label", "fieldname", options, selectedValue)
+@designsystem.RadioGroup("fieldname", options, selectedValue)
+@designsystem.FormHelp("Help text")
+@designsystem.FormError("Error message")
+@designsystem.FlashMessage("Message", "success") // or "error"
+```
 
-### Loading
-- `.loading-spinner`, `.spinner`
+### Layout
 
-## Utility Classes
+```go
+@designsystem.BaseLayout(pageData)
+@designsystem.Header("Page Title", "Optional subtitle")
+@designsystem.PageSection("Section Title",
+  // content
+)
+```
 
-- Display: `.hidden`, `.block`, `.flex`, `.grid`
-- Flexbox: `.flex-col`, `.items-center`, `.justify-between`, `.gap-4`
-- Spacing: `.m-0`, `.mt-4`, `.mb-4`, `.p-4`, `.px-4`, `.py-4`
-- Text: `.text-center`, `.font-bold`, `.text-sm`, `.text-primary`
-- Responsive: `.md\:hidden`, `.md\:block`
+## Spacing Scale
 
-## Responsive Breakpoints
+- `--space-1`: 0.25rem (4px)
+- `--space-2`: 0.5rem (8px)
+- `--space-3`: 0.75rem (12px)
+- `--space-4`: 1rem (16px)
+- `--space-6`: 1.5rem (24px)
+- `--space-8`: 2rem (32px)
+- `--space-12`: 3rem (48px)
 
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
+## Typography
 
-## Features
+- **Font**: System sans-serif (SF Pro Display, Segoe UI, etc.)
+- **Monospace**: SFMono-Regular, Consolas, etc.
 
-- Dark mode support (system preference)
-- Accessibility features (focus states, ARIA labels, touch targets)
-- Reduced motion support
-- HTMX loading states
-- Form validation utilities
+Font sizes range from `--font-size-xs` (0.75rem) to `--font-size-4xl` (2.25rem).
+
+## Utilities
+
+Use utility classes for quick styling:
+
+- **Display**: `flex`, `flex-col`, `flex-wrap`, `hidden`, `block`, `inline-block`
+- **Spacing**: `m-4`, `mb-6`, `p-3`, `px-4`, `py-2`, `gap-4`
+- **Text**: `text-center`, `text-sm`, `font-bold`, `text-primary`, `truncate`
+- **Colors**: `text-primary`, `bg-white`, `border-primary`
+- **Sizing**: `w-full`, `h-full`, `min-h-screen`
+- **Border**: `border`, `border-b`, `rounded-lg`, `rounded-full`
+- **Shadow**: `shadow-sm`, `shadow-md`, `shadow-lg`
+
+## Responsive Design
+
+Built-in responsive behavior:
+- Mobile-first approach
+- Touch-friendly sizing (44px minimum tap targets)
+- Flexible grid layouts
+- Optimized for 640px, 768px, and 1024px+ breakpoints
+
+## Browser Support
+
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- CSS Grid and Flexbox
+- CSS Custom Properties
+- `prefers-color-scheme` media query
 
 ## License
 
-Private - Due Draghi Projects
+MIT
