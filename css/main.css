@@ -936,38 +936,6 @@ img {
 }
 
 /* ========================================================================
-   DARK MODE
-   ======================================================================== */
-
-@media (prefers-color-scheme: dark) {
-  .card,
-  .form-panel,
-  .result-card,
-  .tile {
-    background: var(--gray-800);
-    border-color: var(--gray-700);
-  }
-
-  code,
-  pre {
-    background-color: var(--gray-700);
-  }
-
-  .search-container-wrapper {
-    background: var(--gray-800);
-    border-color: var(--gray-700);
-  }
-
-  .flash-message.flash-error {
-    background: rgba(153, 27, 27, 0.2);
-  }
-
-  .flash-message.flash-success {
-    background: rgba(6, 95, 70, 0.2);
-  }
-}
-
-/* ========================================================================
    REDUCED MOTION
    ======================================================================== */
 

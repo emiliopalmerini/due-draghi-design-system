@@ -9,7 +9,6 @@ A clean, minimal design system built on Notion-like aesthetics. Designed for sim
 - **Templ components**: Reusable Go Templ components for rapid UI development
 - **Responsive**: Mobile-first approach with responsive utilities
 - **Accessibility**: WCAG 2.1 compliant with proper focus states and semantic HTML
-- **Dark mode**: Full dark mode support via `prefers-color-scheme`
 - **Reduced motion**: Respects user motion preferences
 
 ## Quick Start

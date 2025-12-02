@@ -104,19 +104,6 @@
   --input-height: 36px;
 }
 
-/* ===== Dark Mode Support ===== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --notion-bg: #1a1a1a;
-    --notion-bg-secondary: #2a2a2a;
-    --notion-text: #e0e0e0;
-    --notion-text-light: #a0a0a0;
-    --notion-border: #333333;
-    --background-color: #1a1a1a;
-    --surface-color: #2a2a2a;
-  }
-}
-
 /* ===== Reduced Motion Support ===== */
 @media (prefers-reduced-motion: reduce) {
   :root {
