@@ -14,84 +14,94 @@ type PageData struct {
 templ BaseLayout(data PageData) {
 	<!DOCTYPE html>
 	<html lang="it">
-	<head>
-		<meta charset="utf-8"/>
-		<title>
-			if data.Title != "" {
-				{ data.Title }
-			} else {
-				Due Draghi
-			}
-		</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<script src="https://unpkg.com/htmx.org@2.0.3"></script>
-		<link rel="stylesheet" href="/static/css/tokens.css"/>
-		<link rel="stylesheet" href="/static/css/main.css"/>
-		<link rel="stylesheet" href="/static/css/utilities.css"/>
-	</head>
-	<body style="min-height: 100vh; display: flex; flex-direction: column; background: var(--notion-bg); color: var(--notion-text);">
-		<!-- Notion-style top navigation -->
-		<header class="notion-nav">
-			<div class="notion-nav-container">
-				<nav class="breadcrumb" aria-label="Breadcrumb">
-					<a href="/" class="btn">Home</a>
-					if data.Collection != "" {
-						<span style="color: var(--notion-text-light);">/</span>
-						if data.QueryString != "" {
-							<a href={ templ.URL("/" + data.Collection + "?" + data.QueryString) } class="btn">{ data.Collection }</a>
-						} else {
-							<a href={ templ.URL("/" + data.Collection) } class="btn">{ data.Collection }</a>
+		<head>
+			<meta charset="utf-8"/>
+			<title>
+				if data.Title != "" {
+					{ data.Title }
+				} else {
+					Due Draghi
+				}
+			</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<script src="https://unpkg.com/htmx.org@2.0.3"></script>
+			<link rel="stylesheet" href="/static/css/tokens.css"/>
+			<link rel="stylesheet" href="/static/css/main.css"/>
+			<link rel="stylesheet" href="/static/css/utilities.css"/>
+		</head>
+		<body style="min-height: 100vh; display: flex; flex-direction: column; background: var(--notion-bg); color: var(--notion-text);">
+			<!-- Notion-style top navigation -->
+			<header class="notion-nav">
+				<div class="notion-nav-container">
+					<nav class="breadcrumb" aria-label="Breadcrumb">
+						<a href="/" class="btn">Home</a>
+						if data.Collection != "" {
+							<span style="color: var(--notion-text-light);">/</span>
+							if data.QueryString != "" {
+								<a href={ templ.URL("/" + data.Collection + "?" + data.QueryString) } class="btn">{ data.Collection }</a>
+							} else {
+								<a href={ templ.URL("/" + data.Collection) } class="btn">{ data.Collection }</a>
+							}
+							<span class="breadcrumb-separator">/</span>
+							<div class="search-container">
+								<input
+									id="bc-search"
+									name="q"
+									if data.DocTitle != "" {
+										placeholder={ data.DocTitle }
+									}
+									else
+									if data.DocID != "" {
+										placeholder={ data.DocID }
+									} else {
+										placeholder={ "Cerca in " + data.Collection + "…" }
+									}
+									class="field"
+									style="width: 240px; font-size: 13px; padding: 6px 10px;"
+									hx-get={ "/quicksearch/" + data.Collection }
+									hx-target="#bc-results"
+									hx-trigger="keyup changed delay:200ms"
+									autocomplete="off"
+									aria-controls="bc-results"
+									aria-expanded="false"
+								/>
+								<div
+									id="bc-results"
+									class="search-results hidden"
+									role="listbox"
+									aria-label="Risultati ricerca rapida"
+								></div>
+							</div>
 						}
-						<span class="breadcrumb-separator">/</span>
-						<div class="search-container">
-							<input id="bc-search" name="q" 
-								if data.DocTitle != "" { 
-									placeholder={ data.DocTitle } 
-								} else if data.DocID != "" { 
-									placeholder={ data.DocID } 
-								} else { 
-									placeholder={ "Cerca in " + data.Collection + "…" } 
-								}
-								class="field" style="width: 240px; font-size: 13px; padding: 6px 10px;"
-								hx-get={ "/quicksearch/" + data.Collection }
-								hx-target="#bc-results"
-								hx-trigger="keyup changed delay:200ms"
-								autocomplete="off" aria-controls="bc-results" aria-expanded="false"/>
-							<div id="bc-results" class="search-results hidden" 
-								role="listbox" aria-label="Risultati ricerca rapida"></div>
+						if data.DocTitle != "" && data.Collection == "" {
+							<span style="color: var(--notion-text-light);">/</span>
+							<span style="color: var(--notion-text); font-weight: 500; max-width: 40vw;" class="truncate" title={ data.DocTitle }>{ data.DocTitle }</span>
+						} else if data.DocID != "" && data.Collection == "" {
+							<span style="color: var(--notion-text-light);">/</span>
+							<span class="mono tag" title={ data.DocID }>{ data.DocID }</span>
+						}
+					</nav>
+				</div>
+			</header>
+			<!-- Main content area -->
+			<main style="flex: 1; background: var(--notion-bg);">
+				<div id="page-root" hx-history-elt class="container" style="max-width: 1024px; padding-top: 2rem; padding-bottom: 2rem;">
+					{ children... }
+					<div id="page-loading" class="page-overlay" aria-hidden="true">
+						<div class="page-overlay-inner">
+							<span class="spinner"></span>
 						</div>
-					}
-					if data.DocTitle != "" && data.Collection == "" {
-						<span style="color: var(--notion-text-light);">/</span>
-						<span style="color: var(--notion-text); font-weight: 500; max-width: 40vw;" class="truncate" title={ data.DocTitle }>{ data.DocTitle }</span>
-					} else if data.DocID != "" && data.Collection == "" {
-						<span style="color: var(--notion-text-light);">/</span>
-						<span class="mono tag" title={ data.DocID }>{ data.DocID }</span>
-					}
-				</nav>
-			</div>
-		</header>
-
-		<!-- Main content area -->
-		<main style="flex: 1; background: var(--notion-bg);">
-			<div id="page-root" hx-history-elt class="container" style="max-width: 1024px; padding-top: 2rem; padding-bottom: 2rem;">
-				{ children... }
-				<div id="page-loading" class="page-overlay" aria-hidden="true">
-					<div class="page-overlay-inner">
-						<span class="spinner"></span>
 					</div>
 				</div>
-			</div>
-		</main>
-
-		<footer style="background: var(--notion-bg); border-top: 1px solid var(--notion-border); margin-top: auto; padding: 1.5rem 0;">
-			<div class="container" style="max-width: 1024px; text-align: center;">
-				<p style="font-size: 12px; color: var(--notion-text-light); line-height: 1.4; margin: 0;">
-					Made with care by <a href="#" style="color: var(--primary); text-decoration: none;">Due Draghi</a>
-				</p>
-			</div>
-		</footer>
-	</body>
+			</main>
+			<footer style="background: var(--notion-bg); border-top: 1px solid var(--notion-border); margin-top: auto; padding: 1.5rem 0;">
+				<div class="container" style="max-width: 1024px; text-align: center;">
+					<p style="font-size: 12px; color: var(--notion-text-light); line-height: 1.4; margin: 0;">
+						Made with care by <a href="#" style="color: var(--primary); text-decoration: none;">Due Draghi</a>
+					</p>
+				</div>
+			</footer>
+		</body>
 	</html>
 }
 
