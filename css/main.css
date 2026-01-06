@@ -443,6 +443,9 @@ img {
   font-weight: var(--font-weight-extrabold);
   margin-bottom: var(--space-1);
   letter-spacing: var(--letter-spacing-tight);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .collection-card-subtitle {
@@ -463,11 +466,11 @@ img {
 
 .collection-badge {
   font-size: var(--font-size-xs);
-  background: var(--border-color);
-  border: 2px solid var(--border-color);
+  background: transparent;
+  border: none;
   padding: 0.25rem 0.75rem;
   border-radius: 0;
-  color: var(--text-inverse);
+  color: var(--text-muted);
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-wide);
