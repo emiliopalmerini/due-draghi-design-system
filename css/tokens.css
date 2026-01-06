@@ -50,16 +50,17 @@
   --notion-radius: 3px;
 
   /* Semantic mappings */
-  --text-primary: #37352f;
-  --text-secondary: #787774;
-  --text-muted: #a3a3a3;
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-muted: #666666;
   --text-inverse: #ffffff;
   --background-color: #ffffff;
   --surface-color: #ffffff;
-  --border-color: #e9e9e7;
+  --border-color: #000000;
+  --border-light: #e0e0e0;
 
   /* ===== Typography ===== */
-  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Monaco, Consolas, 'PT Mono', 'Liberation Mono', Courier, monospace;
 
   --font-size-2xs: 0.6875rem;
@@ -70,27 +71,30 @@
   --font-size-lg: 1.125rem;
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 4rem;
+  --font-size-6xl: 6rem;
 
-  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
 
-  --line-height-tighter: 1.125;
-  --line-height-tight: 1.25;
-  --line-height-snug: 1.375;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
+  --line-height-tighter: 0.95;
+  --line-height-tight: 1;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.5;
   --line-height-loose: 1.75;
 
-  --letter-spacing-tighter: -0.05em;
-  --letter-spacing-tight: -0.025em;
+  --letter-spacing-tighter: -0.03em;
+  --letter-spacing-tight: -0.02em;
   --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
 
   /* ===== Spacing Scale ===== */
   --space-1: 0.25rem;
